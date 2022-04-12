@@ -25,4 +25,6 @@ if __name__ == "__main__":
     parser.add_argument("--zoom-api-key", dest="zoom_api_key", type=str, required=True)
     parser.add_argument("--zoom-api-secret", dest="zoom_api_secret", type=str, required=True)
     args = parser.parse_args()
+
     dza = DetectZoomAPI(args.zoom_api_key, args.zoom_api_secret)
+    dza.detect()
