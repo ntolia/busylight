@@ -27,10 +27,6 @@ detect if Zoom was running and then pass that status in to a container
 that ran the rest of the code to both check for meetings and to turn
 the busy light on or off.
 
-# Test Commands
-
-- `python o365_cal.py --client-id=${AZURE_BUSYLIGHT_CLIENT_ID} --secret-id=${AZURE_BUSYLIGHT_SECRET}`
-
 # References
 
 - [Govee API Docs](https://govee-public.s3.amazonaws.com/developer-docs/GoveeAPIReference.pdf)

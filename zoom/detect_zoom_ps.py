@@ -10,10 +10,8 @@ class DetectZoom:
 
         output = proc2.communicate()[0]
         if output:
-            print("Zoom in session", output)
             return True
         else:
-            print("Zoom not in session ")
             return False
 
 if __name__ == "__main__":
