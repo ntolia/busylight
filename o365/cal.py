@@ -3,17 +3,17 @@ import datetime
 from O365 import Account, MSGraphProtocol, FileSystemTokenBackend
 
 class DetectMeeting:
-    def __init__(self, client_id, secret_id):
-        self.credentials = (client_id, secret_id)
+    def __init__(self, client_id, secret, token_path):
+        self.credentials = (client_id, secret)
 
         protocol = MSGraphProtocol()
         scopes = ['Calendars.Read.Shared', 'basic']
-        token_backend = FileSystemTokenBackend(token_path='./o365_token')
+        token_backend = FileSystemTokenBackend(token_path)
         self.account = Account(self.credentials, protocol=protocol, token_backend=token_backend)
 
     def detect_meeting(self):
         if not (self.account.is_authenticated):
-            account.authenticate(scopes=scopes)
+            self.account.authenticate(scopes=scopes)
             print('Authenticated!')
         else:
             print('Previously autneticated')
@@ -42,8 +42,8 @@ class DetectMeeting:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="O365 Calendar Access")
     parser.add_argument("--client-id", dest="client_id", type=str, required=True)
-    parser.add_argument("--secret-id", dest="secret_id", type=str, required=True)    
+    parser.add_argument("--secret", dest="secret", type=str, required=True)
     args = parser.parse_args()
 
-    dm = DetectMeeting(args.client_id, args.secret_id)
+    dm = DetectMeeting(args.client_id, args.secret_id, "./o365_token")
     dm.detect_meeting()

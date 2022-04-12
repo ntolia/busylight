@@ -1,8 +1,7 @@
 FROM python:3
-MAINTAINER "Niraj Tolia"
+LABEL MAINTAINER="Niraj Tolia"
 
 WORKDIR /usr/src/busylight
-
 
 RUN pip install setuptools wheel tox O365 zoomus && apt-get -y update \
     && apt-get -y install emacs && apt-get autoclean

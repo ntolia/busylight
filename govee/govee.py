@@ -22,7 +22,6 @@ class GoveeLights:
         device = None
         for device in devices:
             if device.device_name == 'Busylight':
-                print('Busylight found:', device)
                 break
 
         if device is None:
@@ -47,7 +46,7 @@ class GoveeLights:
             loop.close()
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="govee_api_laggat examples")
+    parser = argparse.ArgumentParser(description="Govee Lights Driver")
     parser.add_argument("--api-key", dest="api_key", type=str, required=True)
     args = parser.parse_args()
 
