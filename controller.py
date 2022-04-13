@@ -1,3 +1,4 @@
+import io
 import os
 import subprocess
 import sys
@@ -24,8 +25,12 @@ class BusylightController:
             stderr=subprocess.PIPE,
             universal_newlines=True)
         stdout, stderr = process.communicate()
-        print(stdout)
-        # print(stderr)
+        for line in stdout.splitlines():
+            print(line)
+        for line in stderr.splitlines():
+            if not ('PytzUsageWarning' in line or 'iana_tz' in line):
+                print(line)
+
 
 if __name__ == "__main__":
     blc = BusylightController()
