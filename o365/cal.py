@@ -36,7 +36,7 @@ class DetectMeeting:
 
             # Push now forward by two minutes so that we can be proactive
             if event.start <= (now + datetime.timedelta(minutes=2)) and event.end >= now:
-                print("Currently in", event)
+                # print("Currently in", event)
                 return True
 
         return False

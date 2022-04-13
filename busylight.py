@@ -15,18 +15,18 @@ class Busylight:
     def toogle_busylight(self):
         if self.zoom_on:
             self.govee_lights.turn_light(True)
-            print('Busylight On')
+            print('🔴')
             return
         
         # Let's check for a calendar invite next
         dm = DetectMeeting(self.o365_client_id, self.o365_secret, os.getcwd() + '/o365/o365_token')
         if dm.detect_meeting():
             self.govee_lights.turn_light(True)
-            print('Busylight Off')
+            print('🔴')
             return
 
         self.govee_lights.turn_light(False)
-        print('Busylight Off')
+        print('🟢')
 
 
 if __name__ == '__main__':
