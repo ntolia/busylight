@@ -9,7 +9,7 @@ class GoveeLights:
         self.api_key = api_key
 
     async def _turn_light_on_off(self, state):
-        govee = await Govee.create(self.api_key)
+        govee = await Govee.create(self.api_key, learning_storage=NullLearningStorage())
         devices, err = await govee.get_devices()
         if not devices:
             print('No devices found')
@@ -44,6 +44,17 @@ class GoveeLights:
             loop.run_until_complete(self._turn_light_on_off(state))
         finally:
             loop.close()
+
+# To get rid of warnings
+class NullLearningStorage(GoveeAbstractLearningStorage):
+    async def read(self) -> Dict[str, GoveeLearnedInfo]:
+        return (
+            {}
+        )
+
+    async def write(self, learned_info: Dict[str, GoveeLearnedInfo]):
+        persist_this_somewhere = learned_info
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Govee Lights Driver")

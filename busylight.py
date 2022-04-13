@@ -15,25 +15,28 @@ class Busylight:
     def toogle_busylight(self):
         if self.zoom_on:
             self.govee_lights.turn_light(True)
+            print('Busylight on')
             return
         
         # Let's check for a calendar invite next
         dm = DetectMeeting(self.o365_client_id, self.o365_secret, os.getcwd() + '/o365/o365_token')
         if dm.detect_meeting():
             self.govee_lights.turn_light(True)
+            print('Busylight on')
             return
 
         self.govee_lights.turn_light(False)
+        print('Busylight off')
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Busylight Controller")
-    parser.add_argument("--govee-api-key", dest="govee_api_key", type=str,
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Busylight Controller')
+    parser.add_argument('--govee-api-key', dest='govee_api_key', type=str,
         default=os.environ.get('GOVEE_API_KEY'))
     parser.add_argument('--zoom-on', action=argparse.BooleanOptionalAction)
-    parser.add_argument("--o365-client-id", dest="o365_client_id", type=str,
+    parser.add_argument('--o365-client-id', dest='o365_client_id', type=str,
         default=os.environ.get('O365_CLIENT_ID'))
-    parser.add_argument("--o365-secret", dest="o365_secret_id", type=str,
+    parser.add_argument('--o365-secret', dest='o365_secret_id', type=str,
         default=os.environ.get('O365_SECRET'))
     args = parser.parse_args()
 

@@ -13,10 +13,12 @@ class DetectMeeting:
 
     def detect_meeting(self):
         if not (self.account.is_authenticated):
+            # Note: The keys expire in 24 months or so
+            print('O365 requires authentication')
             self.account.authenticate(scopes=scopes)
-            print('Authenticated!')
         else:
-            print('Previously autneticated')
+            # print('Previously authenticated')
+            pass
 
         schedule = self.account.schedule()
         calendar = schedule.get_default_calendar()

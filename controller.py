@@ -17,7 +17,6 @@ class BusylightController:
                 '-e', 'O365_SECRET', '--rm',
                 '-v', dir_path + ':/usr/src/busylight', 'ntolia/busylight',
                 'python', 'busylight.py', zoom_option]
-        print(docker_cmd)
 
         # Run the Docker container
         process = subprocess.Popen(docker_cmd,
@@ -25,7 +24,7 @@ class BusylightController:
             stderr=subprocess.PIPE,
             universal_newlines=True)
         stdout, stderr = process.communicate()
-        # print(stdout)
+        print(stdout)
         # print(stderr)
 
 if __name__ == "__main__":
