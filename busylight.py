@@ -26,7 +26,7 @@ class Busylight:
             return
 
         self.govee_lights.turn_light(False)
-        print('🟢')
+        print('⚫️')
 
 
 if __name__ == '__main__':
