@@ -1,5 +1,6 @@
 import argparse
 import datetime
+import pytz
 from O365 import Account, MSGraphProtocol, FileSystemTokenBackend
 
 class DetectMeeting:
@@ -30,13 +31,18 @@ class DetectMeeting:
         query.chain('and').on_attribute('end').less_equal(end_time)
 
         events = calendar.get_events(query=query)
+        midnight = datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 
         for event in events:
             # print("Detected calendar event:", event)
 
+            # Skip all-day events
+            if midnight.time() == event.start.time():
+                if event.end >= event.start + datetime.timedelta(hours=24):
+                    continue
+
             # Push now forward by two minutes so that we can be proactive
             if event.start <= (now + datetime.timedelta(minutes=2)) and event.end >= now:
-                # print("Currently in", event)
                 return True
 
         return False
