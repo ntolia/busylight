@@ -5,23 +5,20 @@ This code was created in a hurry to set up a pair of [Govee Light Bars
 signal. The light turns on if the code detects either a meeting in
 progress (O365 calendar support only) or if Zoom is running.
 
+# Prerequisites
 
-# How It Works
-
-## Prerequisites
-
-### Tools
+## Tools
 
 - Docker
 - `make`
 - Python3
 
-### API Keys
+## API Keys
 
 - A Govee API key
 - Microsoft API keys (needs admin approval)
 
-## How To Run
+# Running the Busylight Controller
 
 ```bash
 make buildimage
@@ -33,7 +30,9 @@ python controller.py
 [xbar](https://xbarapp.com/) is a very convenient way to run the busylight controller
 in a loop. There is an example script (`xbar.1m.sh`) provided to illustrate this use.
 
-## The Hack
+# Pointers
+
+## The Zoom Hack
 
 So, this code was written for a Mac. Detecting if Zoom was running via
 the Zoom API was possible but it required OAuth support to do it right
@@ -47,7 +46,7 @@ detect if Zoom was running and then pass that status in to a container
 that ran the rest of the code to both check for meetings and to turn
 the busy light on or off.
 
-# References
+## References
 
 - [Govee API Docs](https://govee-public.s3.amazonaws.com/developer-docs/GoveeAPIReference.pdf)
 - [Govee Python SDK - Unofficial](https://github.com/LaggAt/python-govee-api)
