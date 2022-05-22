@@ -5,8 +5,9 @@ from typing import Dict
 from govee_api_laggat import Govee, GoveeAbstractLearningStorage, GoveeLearnedInfo
 
 class GoveeLights:
-    def __init__(self, api_key):
+    def __init__(self, api_key, light_name):
         self.api_key = api_key
+        self.light_name = light_name
 
     async def _turn_light_on_off(self, state):
         govee = await Govee.create(self.api_key, learning_storage=NullLearningStorage())
@@ -21,7 +22,7 @@ class GoveeLights:
 
         device = None
         for device in devices:
-            if device.device_name == 'Busylight':
+            if device.device_name == self.light_name:
                 break
 
         if device is None:
@@ -59,7 +60,9 @@ class NullLearningStorage(GoveeAbstractLearningStorage):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Govee Lights Driver")
     parser.add_argument("--api-key", dest="api_key", type=str, required=True)
+    parser.add_argument("--light-name", dest="light_name", type=str,
+        default="Busylight")
     args = parser.parse_args()
 
-    govee_lights = GoveeLights(args.api_key)
+    govee_lights = GoveeLights(args.api_key, args.light_name)
     govee_lights.turn_light(False)

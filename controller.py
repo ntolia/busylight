@@ -17,7 +17,7 @@ class BusylightController:
         docker_cmd = ['/usr/local/bin/docker', 'run', '-e', 'GOVEE_API_KEY', '-e', 'O365_CLIENT_ID',
                 '-e', 'O365_SECRET', '--rm',
                 '-v', dir_path + ':/usr/src/busylight', 'ntolia/busylight',
-                'python', 'busylight.py', zoom_option]
+                'python', 'busylight.py', zoom_option, '--light-name', 'Busylight']
 
         # Run the Docker container
         process = subprocess.Popen(docker_cmd,
