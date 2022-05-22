@@ -1,4 +1,4 @@
-.PHONY: buildimage
+.PHONY: buildimage dev busylight
 
 buildimage: Dockerfile
 	docker build -t "ntolia/busylight:latest" .

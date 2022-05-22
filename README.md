@@ -10,8 +10,28 @@ progress (O365 calendar support only) or if Zoom is running.
 
 ## Prerequisites
 
+### Tools
+
+- Docker
+- `make`
+- Python3
+
+### API Keys
+
 - A Govee API key
 - Microsoft API keys (needs admin approval)
+
+## How To Run
+
+```bash
+make buildimage
+python controller.py
+```
+
+### Xbar on macOS
+
+[xbar](https://xbarapp.com/) is a very convenient way to run the busylight controller
+in a loop. There is an example script (`xbar.1m.sh`) provided to illustrate this use.
 
 ## The Hack
 
