@@ -25,10 +25,14 @@ make buildimage
 python controller.py
 ```
 
+If a meeting or in-progress Zoom session (not simply Zoom running) is detected,
+you will see 🔴 on `stdout` and ⚫️ otherwise.
+
 ### Xbar on macOS
 
 [xbar](https://xbarapp.com/) is a very convenient way to run the busylight controller
-in a loop. There is an example script (`xbar.1m.sh`) provided to illustrate this use.
+in a loop and show the meeting status in your menu bar (using the 🔴/⚫️ output shown
+above). There is an example script (`xbar.1m.sh`) provided to illustrate this use.
 
 # Pointers
 

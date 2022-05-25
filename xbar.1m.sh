@@ -9,5 +9,6 @@
 pythonenv="/usr/local/bin/python3"
 script="/Users/ntolia/src/busylight/controller.py"
 
+# Source credentials for Govee, O365
 source /Users/ntolia/.bash_profile
 $pythonenv $script
